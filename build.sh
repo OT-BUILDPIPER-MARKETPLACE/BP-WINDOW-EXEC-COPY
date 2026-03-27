@@ -98,14 +98,14 @@ ESCAPED_SOURCE=$(printf '%s\\%s' "$SOURCE_PATH" "$FOLDER_NAME" | sed 's#\\#\\\\#
 ESCAPED_DEST=$(printf '%s' "$DEST_PATH" | sed 's#\\#\\\\#g')
 ESCAPED_BACKUP=$(printf '%s' "$BACKUP_DIR" | sed 's#\\#\\\\#g')
 
-logInfoMessage "Source: $ESCAPED_SOURCE"
+#logInfoMessage "Source: $ESCAPED_SOURCE"
 
 if [ -n "$ESCAPED_SOURCE" ] && [ -n "$ESCAPED_DEST" ] && [ -n "$ESCAPED_BACKUP" ]; then
   logInfoMessage "Source: $ESCAPED_SOURCE"
   logInfoMessage "Destination: $ESCAPED_DEST"
-  add_event "FETCHING SOURCE PATH" "Successful" "Source path retrieved successfully" "Source: $ESCAPED_SOURCE"
-  add_event "FETCHING DESTINATION PATH" "Successful" "Destination path retrieved successfully" "Destination: $ESCAPED_DEST"
-  add_event "FETCHING BACKUP PATH" "Successful" "Backup path retrieved successfully" "Backup: $ESCAPED_BACKUP"
+  add_event "FETCHING SOURCE PATH" "Successful" "Source path retrieved successfully" "Source Path: $ESCAPED_SOURCE"
+  add_event "FETCHING DESTINATION PATH" "Successful" "Destination path retrieved successfully" "Destination Path: $ESCAPED_DEST"
+  add_event "FETCHING BACKUP PATH" "Successful" "Backup path retrieved successfully" "Backup Path: $ESCAPED_BACKUP"
 else
   logErrorMessage "Source or Destination path is empty"
    add_event "FETCHING SOURCE PATH" "Failed" "Source or Destination path is missing" "Source: $ESCAPED_SOURCE, Destination: $ESCAPED_DEST, Backup: $ESCAPED_BACKUP"
@@ -155,4 +155,3 @@ else
     add_event "ARTIFACT DEPLOYMENT" "Failed" "Code deployment failed during robocopy execution" "Source: $ESCAPED_SOURCE, Destination: $ESCAPED_DEST"
 fi
 saveTaskStatus ${TASK_STATUS} ${ACTIVITY_SUB_TASK_CODE}
-
